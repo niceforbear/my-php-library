@@ -1,0 +1,66 @@
+$ git config --global user.name ""
+$ git config --global user.email ""
+$ git init
+$ git add filename
+$ git commit -m "remark"
+$ git status
+$ git diff filename     //check the difference between this version and last one.
+$ git log       //get the history commit operation
+$ git log --pretty=oneline      //pretty output
+$ git reset --hard HEAD^        //rollback to last version
+$ git reset --hard commit_id
+$ git reflog        //record history commend.
+$ git checkout -- filename      //Revoke all modification(modify or delete) in workplace to stage | master
+$ git rm filename       //rm file from master
+$ git commit -m "remark"        //push
+
+/**
+ * Repository: stage + master + HEAD
+ * add : from workspace to stage
+ * commit : from stage to master
+ * HEAD : index of master
+ * Untracked : The file didn't add to stage
+ */
+
+/* Remote operate*/
+$ ssh-keygen -t rsa -C "email"
+$ git remote add origin git@github.com:username/repo.git        //copy local repo to remote repo
+$ git push -u origin master     //
+$ git push origin master        //submit local operate
+$ git clone https://github.com/username/repo.git        //clone repo from remote to local
+/* Remote operate*/
+
+HEAD points to master, and master points to submit.
+$ git checkout -b dev       //create a branch 'dev' and switch to it
+$ git branch dev        //create a branch 'dev'
+$ git checkout dev      //switch branch to 'dev'
+$ git branch        //see present branch
+$ git merge branch_name     //merge branch_name to present branch
+$ git branch -d branch_name     //delete branch
+$ git log --graph --pretty=oneline --abbrev-commit      //get merge situation(graph) when conflicted
+
+/** Fast forward Mode: lose branch info when delete branch */
+$ git merge --no-ff -m "" branch_name
+
+/** Bug branch */
+$ git stash     //save local(workplace, refer to master) changes
+$ git stash list        //see where is my scene
+$ git stash pop     ==      $ git stash apply + $ git stash drop
+$ git stash apply stash@{0}
+
+/** Feature branch */
+//create new branch to develop
+
+/** Cooperation */
+$ git remote        //see remote repo info
+$ git remote -v     //see  remote repo detailed info
+$ git push origin master
+$ git push origin dev
+$ git checkout -b dev origin/dev        //create origin/dev to local
+/**
+ * If the remote repo have conflicted, pull and merger in local, then push
+ */
+$ git pull
+$ git branch --set-upstream dev origin/dev      //connect dev to origin/dev
+$ git push <远程主机名> <本地分支名>:<远程分支名>
+$ git pull <远程主机名> <远程分支名>:<本地分支名>
