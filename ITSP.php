@@ -8,12 +8,31 @@
  */
 class ITSP
 {
-    public static function insertSort(){
-
+    public static function insertSort($arr){
+        $count = count($arr);
+        for($i=0; $i<$count; $i++){
+            $temp = $arr[$i];
+            for($j=$i-1; $j>=0&&$arr[$j]>$temp; $j--){
+                $arr[$j+1] = $arr[$j];
+            }
+            $arr[$j+1] = $temp;
+        }
+        return $arr;
     }
 
-    public static function selectSort(){
-
+    public static function selectSort($arr){
+        $count = count($arr);
+        for($i=0; $i<$count; $i++){
+            $min = $arr[$i];
+            for($j=$i+1; $j<$count; $j++){
+                if($min > $arr[$j]){
+                    $tmp = $arr[$i];
+                    $arr[$i] = $arr[$j];
+                    $arr[$j] = $tmp;
+                }
+            }
+        }
+        return $arr;
     }
 
     public static function binaerSearchIterative($arr, $val, $left, $right){
@@ -66,6 +85,15 @@ class ITSP
      */
     public static function demo(){
         $arr = [1,3,5,2,9,10,1];
+
+        $new = ITSP::insertSort($arr);
+        var_dump($new);
+        exit;
+
+        $new = ITSP::selectSort($arr);
+        var_dump($new);
+        exit;
+
         $new = ITSP::bubbleSort($arr);
         $count = count($new);
         var_dump($new);
