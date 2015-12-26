@@ -8,6 +8,47 @@
  */
 class ITSP
 {
+    public static function mergeSort($arr){
+        if(count($arr) == 1){
+            return $arr;
+        }
+
+        $left = $right = [];
+        $middle = round(count($arr)/2);
+        for($i=0; $i<$middle; $i++){
+            $left[] = $arr[$i];
+        }
+        for($i=$middle; $i<count($arr); $i++){
+            $right[] = $arr[$i];
+        }
+
+        $left  = ITSP::mergeSort($left);
+        $right = ITSP::mergeSort($right);
+        return ITSP::mergeSortConquer($left, $right);
+    }
+
+    public static function mergeSortConquer($left, $right){
+        $result = [];
+
+        while(count($left) > 0 || count($right) > 0){
+            if(count($left) > 0 && count($right) > 0){
+                $firstLeft  = current($left);
+                $firstRight = current($right);
+                if($firstLeft < $firstRight){
+                    $result[] = array_shift($left);
+                }else{
+                    $result[] = array_shift($right);
+                }
+            }elseif(count($left) > 0){
+                $result[] = array_shift($left);
+            }elseif(count($right) > 0){
+                $result[] = array_shift($right);
+            }
+        }
+
+        return $result;
+    }
+
     public static function insertSort($arr){
         $count = count($arr);
         for($i=0; $i<$count; $i++){
@@ -84,7 +125,20 @@ class ITSP
      * Demo for binary search
      */
     public static function demo(){
+        /**
+         * Demo data:
+         *
+         * $arr = [];
+         * for($i=0; $i<100; $i++)
+         *   $arr[] = $i;
+         * shuffle($arr);
+         */
+
         $arr = [1,3,5,2,9,10,1];
+
+        $new = ITSP::mergeSort($arr);
+        var_dump($new);
+        exit;
 
         $new = ITSP::insertSort($arr);
         var_dump($new);
