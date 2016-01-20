@@ -140,7 +140,7 @@ class Toys{
         }
         $whereStr .= ")";
 
-        $conn = mysql_connect("localhost","root","liuyinkuo") or die(mysql_error());
+        $conn = mysql_connect("localhost","root","niceforbear") or die(mysql_error());
         $db = mysql_select_db("ditui",$conn) or die(mysql_error());
         $selectSql = "SELECT * FROM $selectTableName WHERE $sqlWhereSubString AND audit_id NOT IN {$whereStr}";
         $res = mysql_query($selectSql, $conn);
