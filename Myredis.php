@@ -17,6 +17,7 @@ class Myredis{
         '> CONFIG SET loglevel warning',
         '> CONFIG GET loglevel',
         '> SELECT 1', // default 16 DB, like `namespace`
+        '> DBSIZE', // get the number of stored keys
         /* ch1 string */
         '> SET key val', // '> KEYS pattern',
         '> GET key',
