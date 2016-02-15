@@ -7,5 +7,5 @@ String.prototype.trim = String.prototype.trim || function(){
 
 // Add getName method to Function prototype
 Function.prototype.getName = function(){
-    return this.name || this.toString().match(/function\s*([^()*]\(/)))[1];
+    return this.name || this.toString().match(/function\s*([^()*]\(/)[1];
 }
